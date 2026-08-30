@@ -98,3 +98,31 @@ h2 { margin-bottom: 10px; font-size: clamp(1.45rem, 2.3vw, 2.15rem); line-height
 @media (max-width: 980px) { .app-shell { height: auto; min-height: 100dvh; overflow: visible; } .app-header { position: sticky; top: 0; z-index: 2; align-items: stretch; flex-wrap: wrap; } .header-round-preview { order: 3; width: 100%; max-width: none; } .header-status { margin-left: auto; } .movement-screen { padding: 28px; } .movement-card { grid-template-columns: minmax(260px, .7fr) minmax(330px, 1.3fr); } .movement-figure > img { height: min(68vh, 720px); max-width: 720px; transform: none; } .countdown { width: min(100%, 230px); } }
 @media (max-width: 720px) { .app-header { padding: 12px 16px; } .brand { font-size: 1.15rem; white-space: normal; } .header-status { display: grid; grid-template-columns: .75fr 1.25fr; width: 100%; } .status-card, .tree-status { min-width: 0; padding: 8px; } .screen { min-height: calc(100dvh - 190px); padding: 22px 16px; } .mode-options, .quiz-panel, .result-panel { grid-template-columns: 1fr; } .mode-card { grid-template-columns: 100px 1fr; grid-template-areas: "art title" "art body" "action action"; min-height: 0; } .mode-illustration img { height: 120px; } .movement-screen { padding: 22px 18px 34px; } .movement-card { grid-template-columns: 1fr; grid-template-areas: "copy" "timer" "figure" "actions"; gap: 26px; /* Let long titles expand the card so controls remain inside its border. */ height: auto; min-height: 100%; } .movement-copy h1 { font-size: clamp(3rem, 14vw, 4.8rem); } .movement-figure { position: static; grid-area: figure; pointer-events: auto; } .movement-figure > img { height: min(56vh, 520px); } .countdown { width: min(100%, 230px); border-width: 8px; } .movement-actions, .dialog-actions, .result-actions { grid-template-columns: 1fr; } .movement-actions { position: static; justify-self: stretch; width: auto; max-width: none; } .movement-actions .primary-action, .movement-actions .secondary-action { min-height: 74px; font-size: 1.5rem; } .quiz-image-wrap img { max-width: 250px; } }
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; } }
+
+/* Standalone developer page for exercising pose recognition with a live camera. */
+.pose-debug-page { min-height: 100dvh; padding: clamp(24px, 4vw, 56px); background: radial-gradient(circle at 5% 95%, rgba(130, 213, 187, .35), transparent 30%), #e8f5f3; }
+.pose-debug-header { display: flex; align-items: start; justify-content: space-between; gap: 24px; width: min(1180px, 100%); margin: 0 auto 28px; }
+.pose-debug-header h1 { margin: 5px 0 10px; font-size: clamp(2.2rem, 5vw, 4.2rem); }
+.pose-debug-header p { max-width: 700px; font-size: 1.1rem; line-height: 1.5; }
+.pose-debug-header a { flex: 0 0 auto; padding: 12px 18px; color: #4a5a8a; border: 2px solid #889df0; border-radius: 999px; background: #f7f3df; font-weight: 800; text-decoration: none; }
+.pose-debug-eyebrow { color: #3a6b5a; font-size: .85rem; font-weight: 900; letter-spacing: .12em; text-transform: uppercase; }
+.pose-debug-grid { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(320px, .65fr); gap: 24px; width: min(1180px, 100%); margin: 0 auto; }
+.pose-debug-preview-card, .pose-debug-result-card { padding: clamp(18px, 3vw, 30px); }
+.pose-debug-video-wrap { position: relative; display: grid; place-items: center; overflow: hidden; min-height: 320px; aspect-ratio: 4 / 3; margin-bottom: 22px; border: 4px solid #fff; border-radius: 22px; background: #263238; color: #fff; font-weight: 800; }
+.pose-debug-video-wrap video { width: 100%; height: 100%; object-fit: cover; transform: scaleX(-1); }
+.pose-debug-video-wrap > span { position: absolute; padding: 10px 15px; border-radius: 999px; background: rgba(0, 0, 0, .65); }
+.pose-debug-field { display: grid; gap: 8px; margin-bottom: 18px; color: #4a5a8a; font-weight: 900; }
+.pose-debug-field select { width: 100%; min-height: 52px; padding: 8px 14px; color: #725d42; border: 2px solid #82d5bb; border-radius: 14px; background: #fff; font: inherit; }
+.pose-debug-actions { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+.pose-debug-error { margin: 16px 0 0; padding: 12px; color: #8b2635; border-radius: 12px; background: #ffe5e8; font-weight: 800; }
+.pose-debug-result-card { align-self: start; }
+.pose-debug-verdict { margin-bottom: 22px; padding: 18px; color: #8b2635; border-radius: 16px; background: #ffe5e8; font-size: 1.35rem; font-weight: 900; text-align: center; }
+.pose-debug-verdict.is-matching { color: #276644; background: #dff6e8; }
+.pose-debug-values { display: grid; gap: 0; margin: 0; }
+.pose-debug-values div { display: grid; grid-template-columns: 1fr 1.15fr; gap: 12px; padding: 11px 0; border-bottom: 1px dashed rgba(114, 93, 66, .3); }
+.pose-debug-values dt { color: #4a5a8a; font-weight: 800; }
+.pose-debug-values dd { overflow-wrap: anywhere; margin: 0; font-weight: 800; text-align: right; }
+.pose-debug-note { margin: 20px 0 0; color: #3a6b5a; line-height: 1.5; }
+
+@media (max-width: 800px) { .pose-debug-header { display: grid; } .pose-debug-header a { justify-self: start; } .pose-debug-grid { grid-template-columns: 1fr; } }
+@media (max-width: 480px) { .pose-debug-page { padding: 18px 12px; } .pose-debug-video-wrap { min-height: 220px; } .pose-debug-actions { grid-template-columns: 1fr; } }

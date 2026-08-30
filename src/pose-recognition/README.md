@@ -2,6 +2,22 @@
 
 This module accepts a decoded image frame, checks it against a requested movement, and returns a stable application-level result. It does not own camera access, video playback, frame capture, or React state.
 
+## Camera debug page
+
+For manual browser testing, start the development server and open the standalone debug page:
+
+```bash
+pnpm dev
+```
+
+```text
+http://localhost:5173/pose-recognition-debug
+```
+
+Select any of the ten supported movement IDs, allow camera access, and press **Start camera**. The page captures up to five frames per second and displays the single-frame decision, rule or model source, confidence values, rule measurement, and continuous-hold progress. Switching the target movement resets the displayed result and hold tracker.
+
+Camera access requires `localhost` or HTTPS and explicit browser permission. This page is only an adapter for manual testing; camera ownership remains outside the pose-recognition module.
+
 ## Responsibilities
 
 The caller is responsible for:
